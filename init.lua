@@ -288,6 +288,10 @@ vim.o.hlsearch = true
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
@@ -410,6 +414,11 @@ vim.keymap.set('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
+
+vim.keymap.set('n', '<leader>f', function()
+  require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))
+end, { desc = '[f] Fuzzily search for files by name' })
+
 
 local function telescope_live_grep_open_files()
   require('telescope.builtin').live_grep {
